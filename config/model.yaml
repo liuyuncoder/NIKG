@@ -1,0 +1,26 @@
+inter_matrix_type: "01"
+spmm: "spmm" # spmm, off
+
+# Denoising
+prune_threshold: 0.01
+
+# fix perturb
+ptb_strategy: "None" # "replace" "None"
+ptb_prop: 0.01
+
+# model config
+embedding_size: 64
+kg_embedding_size: 64
+n_layers: 2
+# learning_rate: 4e-5
+# reg_weights: 1e-5
+
+# Training and evaluation config
+eval_args:
+   split: {'RS': [0.7, 0.1, 0.2]}
+   group_by: user
+   order: RO
+   mode: full
+metrics: ['Recall', 'MRR', 'NDCG', 'Hit', 'Precision']
+topk: 20
+valid_metric: MRR@20

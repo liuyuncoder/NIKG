@@ -1,0 +1,33 @@
+# dataset config : Knowledge-based Recommendation
+data_path: /home/yun-liu/workspace/NIKG/dataset/
+# gpu_id: '2'
+USER_ID_FIELD: user_id
+ITEM_ID_FIELD: item_id
+HEAD_ENTITY_ID_FIELD: head_id
+TAIL_ENTITY_ID_FIELD: tail_id
+RELATION_ID_FIELD: relation_id
+ENTITY_ID_FIELD: entity_id
+load_col:
+    inter: [user_id, item_id]
+    kg: [head_id, relation_id, tail_id]
+    link: [item_id, entity_id]
+
+# model config
+# embedding_size: 64
+# kg_embedding_size: 64
+# reg_weights: 1e-5
+
+# Training and evaluation config
+eval_args:
+   split: {'RS': [0.7, 0.1, 0.2]}
+   group_by: user
+   order: RO
+   mode: full
+metrics: ['Recall', 'MRR', 'NDCG', 'Hit', 'Precision']
+topk: 20
+valid_metric: MRR@20
+
+gpu_id: '2,3'
+nproc: 2
+world_size: 2
+group_offset: 0
